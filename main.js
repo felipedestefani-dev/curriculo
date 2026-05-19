@@ -50,7 +50,7 @@
   sections.forEach((section) => sectionObserver.observe(section));
 
   const revealEls = document.querySelectorAll(
-    ".section-title, .prose, .tags-list, .empty-state, .entry, .qualification, .language-card, .contact-grid"
+    ".section-title, .prose, .tags-list, .empty-state, .entry, .qualification, .project-card, .language-card, .contact-grid"
   );
 
   const revealObserver = new IntersectionObserver(

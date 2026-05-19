@@ -9,6 +9,7 @@ Página única, design clean e responsivo — serve para qualquer área profissi
 - **Experiência profissional**
 - **Formação acadêmica**
 - **Cursos e qualificações**
+- **Projetos** — sites que você desenvolveu
 - **Idiomas**
 - **Contato**
 
