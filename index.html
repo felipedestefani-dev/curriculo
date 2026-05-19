@@ -27,7 +27,7 @@
         <a href="#experiencia">Experiência</a>
         <a href="#formacao">Formação</a>
         <a href="#cursos">Cursos</a>
-        <a href="#projetos">Projetos</a>
+        <a href="#projetos" hidden>Projetos</a>
         <a href="#idiomas">Idiomas</a>
         <a href="#contato">Contato</a>
       </nav>
@@ -135,22 +135,26 @@
       </div>
     </section>
 
-    <section class="section" id="projetos">
+    <section class="section" id="projetos" hidden>
       <div class="container">
-        <h2 class="section-title">Projetos</h2>
-        <div class="section-line" aria-hidden="true"></div>
-        <p class="section-intro">
-          Sites e aplicações web que desenvolvi.
-        </p>
+        <header class="projects-header">
+          <h2 class="section-title">Projetos</h2>
+          <div class="section-line" aria-hidden="true"></div>
+          <p class="projects-lead">Sites e aplicações web que desenvolvi.</p>
+        </header>
         <ul class="projects-grid">
           <li class="project-card">
-            <div class="project-card-body">
-              <h3>Etec Noturno</h3>
+            <div class="project-card-info">
+              <div class="project-card-top">
+                <h3 class="project-title">Etec Noturno</h3>
+                <a href="https://etec-informa.vercel.app" class="project-link" target="_blank" rel="noopener noreferrer">
+                  Ver site<span aria-hidden="true">↗</span>
+                </a>
+              </div>
               <p class="project-desc">
                 Site institucional para controlar datas, eventos e informações da escola.
               </p>
             </div>
-            <a href="https://etec-informa.vercel.app" class="btn btn-outline project-btn" target="_blank" rel="noopener noreferrer">Ver site</a>
             <ul class="project-tags" aria-label="Tecnologias">
               <li>HTML</li>
               <li>CSS</li>
@@ -161,18 +165,23 @@
             </ul>
           </li>
           <li class="project-card">
-            <div class="project-card-body">
-              <h3>Rubens Garden</h3>
+            <div class="project-card-info">
+              <div class="project-card-top">
+                <h3 class="project-title">Rubens Garden</h3>
+                <a href="https://rubens-garden.vercel.app" class="project-link" target="_blank" rel="noopener noreferrer">
+                  Ver site<span aria-hidden="true">↗</span>
+                </a>
+              </div>
               <p class="project-desc">
                 Site de jardinagem desenvolvido para treino e prática em desenvolvimento web.
               </p>
             </div>
-            <a href="https://rubens-garden.vercel.app" class="btn btn-outline project-btn" target="_blank" rel="noopener noreferrer">Ver site</a>
             <ul class="project-tags" aria-label="Tecnologias">
               <li>HTML</li>
               <li>CSS</li>
               <li>JavaScript</li>
               <li>Python</li>
+              <li>Banco de Dados</li>
             </ul>
           </li>
         </ul>
