@@ -9,6 +9,18 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
+  const linkedinLink = document.getElementById("linkedin");
+  if (linkedinLink) {
+    linkedinLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.open(
+        "https://www.linkedin.com/in/felipe-destefani-da-silva-273437377",
+        "_blank",
+        "noopener,noreferrer"
+      );
+    });
+  }
+
   function closeNav() {
     navMenu.classList.remove("open");
     navToggle.setAttribute("aria-expanded", "false");
