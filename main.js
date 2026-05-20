@@ -9,17 +9,19 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
-  const linkedinLink = document.getElementById("linkedin");
-  if (linkedinLink) {
-    linkedinLink.addEventListener("click", (e) => {
+  const externalContactLinks = {
+    linkedin: "https://www.linkedin.com/in/felipe-destefani-da-silva-273437377",
+    github: "https://github.com/felipedestefani-dev",
+  };
+
+  Object.entries(externalContactLinks).forEach(([id, url]) => {
+    const link = document.getElementById(id);
+    if (!link) return;
+    link.addEventListener("click", (e) => {
       e.preventDefault();
-      window.open(
-        "https://www.linkedin.com/in/felipe-destefani-da-silva-273437377",
-        "_blank",
-        "noopener,noreferrer"
-      );
+      window.open(url, "_blank", "noopener,noreferrer");
     });
-  }
+  });
 
   function closeNav() {
     navMenu.classList.remove("open");
