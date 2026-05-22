@@ -83,6 +83,23 @@
     revealObserver.observe(el);
   });
 
+  const projetosSection = document.getElementById("projetos");
+  const projetosNavLink = navMenu.querySelector('a[href="#projetos"]');
+  const verProjetosBtn = document.getElementById("ver-projetos");
+
+  function showProjetos() {
+    if (projetosSection) projetosSection.hidden = false;
+    if (projetosNavLink) projetosNavLink.hidden = false;
+    projetosSection?.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
+  }
+
+  verProjetosBtn?.addEventListener("click", showProjetos);
+  projetosNavLink?.addEventListener("click", showProjetos);
+
+  if (location.hash === "#projetos") {
+    showProjetos();
+  }
+
   const downloadBtn = document.getElementById("download-pdf");
   const main = document.getElementById("main");
 
@@ -101,6 +118,7 @@
       const label = downloadBtn.textContent;
       downloadBtn.textContent = "Gerando PDF…";
       document.body.classList.add("pdf-export");
+      showProjetos();
       showAllReveals();
 
       try {

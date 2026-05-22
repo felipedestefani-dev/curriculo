@@ -466,6 +466,12 @@ p:last-child {
   margin: 0 0 0.2rem;
 }
 
+.entry-header .btn {
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  padding: 0.45rem 0.9rem;
+}
+
 .entry-org {
   font-size: 0.95rem;
   color: var(--accent);
