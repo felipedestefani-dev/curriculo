@@ -1,5 +1,5 @@
 (function () {
-  const FILE_URL = "https://ejmnhlqzdetjjmwmqgae.supabase.co";
+  const FILE_URL = "https://ejmnhlqzdethjmwmqgae.supabase.co";
   const FILE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqbW5obHF6ZGV0aGptd21xZ2FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk1MTQxOTAsImV4cCI6MjEwNTA5MDE5MH0.VLCbgcFarueiCrGpkWZvO7REl10yKMjLAvucCFEG2YE";
 
   function readStored() {
@@ -11,10 +11,11 @@
   }
 
   const stored = readStored();
+  const storedIsCurrent = stored.version === 2 && stored.supabaseUrl && stored.supabaseAnonKey;
 
   window.SITE_CONFIG = {
-    supabaseUrl: stored.supabaseUrl || FILE_URL,
-    supabaseAnonKey: stored.supabaseAnonKey || FILE_KEY,
+    supabaseUrl: storedIsCurrent ? stored.supabaseUrl : FILE_URL,
+    supabaseAnonKey: storedIsCurrent ? stored.supabaseAnonKey : FILE_KEY,
     adminEmail: "felipedestefanidasilva@gmail.com",
   };
 
@@ -24,6 +25,7 @@
     localStorage.setItem(
       "cv-supabase-config",
       JSON.stringify({
+        version: 2,
         supabaseUrl: window.SITE_CONFIG.supabaseUrl,
         supabaseAnonKey: window.SITE_CONFIG.supabaseAnonKey,
       })

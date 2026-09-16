@@ -677,7 +677,10 @@
           : await supabase.auth.signInWithPassword({ email: emailValue, password: passwordValue });
       if (result.error) {
         message.className = "status-error";
-        message.textContent = result.error.message;
+        message.textContent =
+          result.error.message === "Failed to fetch"
+            ? "Não consegui conectar ao Supabase. Abra o site por http://localhost ou pelo GitHub Pages, não clicando duas vezes no arquivo. Se acabou de atualizar, recarregue com Cmd+Shift+R."
+            : result.error.message;
         return;
       }
       if (!result.data.session) {
