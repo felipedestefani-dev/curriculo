@@ -193,8 +193,19 @@
       courses.innerHTML = items.length
         ? items
             .map((item) => {
+              const certHref = item.certificateUrl ? safeHref(item.certificateUrl) : "";
+              const cert =
+                certHref && certHref !== "#"
+                  ? '<a class="qualification-cert" href="' +
+                    esc(certHref) +
+                    '"' +
+                    externalAttrs(certHref) +
+                    ">" +
+                    esc(item.certificateLabel || "Ver certificado") +
+                    "</a>"
+                  : "";
               return (
-                '<li class="qualification">' +
+                '<li class="qualification"><div class="qualification-main">' +
                 (item.type ? '<span class="qualification-badge">' + esc(item.type) + "</span>" : "") +
                 '<div class="qualification-header"><h3>' +
                 esc(item.title) +
@@ -203,6 +214,8 @@
                 "</div>" +
                 (item.institution ? '<p class="qualification-org">' + esc(item.institution) + "</p>" : "") +
                 (item.detail ? '<p class="qualification-detail">' + esc(item.detail) + "</p>" : "") +
+                "</div>" +
+                cert +
                 "</li>"
               );
             })

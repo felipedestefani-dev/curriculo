@@ -542,10 +542,44 @@ p:last-child {
 }
 
 .qualification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
   padding: 1.25rem 1.35rem;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+}
+
+.qualification-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.qualification-cert {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+
+.qualification-cert:hover {
+  color: var(--accent-hover);
+}
+
+@media (max-width: 520px) {
+  .qualification {
+    flex-wrap: wrap;
+  }
+
+  .qualification-cert {
+    white-space: normal;
+  }
 }
 
 .qualification-badge {

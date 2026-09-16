@@ -147,6 +147,28 @@
     root.append(upload);
   }
 
+  async function uploadCertificate(file, item) {
+    if (!file) return;
+    const supabase = client();
+    if (!supabase) return setStatus("Conecte o Supabase antes de enviar o certificado.", "error");
+    setStatus("Enviando certificado…");
+    const ext = (file.name.split(".").pop() || "pdf").toLowerCase();
+    const path = "certificates/" + Date.now() + "." + ext;
+    const { error } = await supabase.storage.from("photos").upload(path, file, {
+      cacheControl: "3600",
+      upsert: false,
+    });
+    if (error) {
+      setStatus("Não foi possível enviar o certificado. " + error.message, "error");
+      return;
+    }
+    const { data } = supabase.storage.from("photos").getPublicUrl(path);
+    item.certificateUrl = data.publicUrl;
+    if (!item.certificateLabel) item.certificateLabel = "Ver certificado";
+    setStatus("Certificado enviado. Clique em Salvar para publicar.", "ok");
+    draw();
+  }
+
   async function uploadPhoto(file) {
     if (!file) return;
     const supabase = client();
@@ -345,8 +367,24 @@
         }),
         field("Detalhes", item.detail, (value) => {
           item.detail = value;
-        }, { textarea: true })
+        }, { textarea: true }),
+        field("Texto do certificado", item.certificateLabel || "", (value) => {
+          item.certificateLabel = value;
+        }, { placeholder: "Ver certificado" }),
+        field("Link do certificado", item.certificateUrl || "", (value) => {
+          item.certificateUrl = value;
+        }, { placeholder: "https:// ou envie o arquivo abaixo" })
       );
+      const upload = document.createElement("label");
+      upload.className = "field";
+      const uploadLabel = document.createElement("span");
+      uploadLabel.textContent = "Enviar certificado (PDF ou imagem)";
+      const file = document.createElement("input");
+      file.type = "file";
+      file.accept = "application/pdf,image/*";
+      file.addEventListener("change", () => uploadCertificate(file.files[0], item));
+      upload.append(uploadLabel, file);
+      body.append(upload);
       root.append(card);
     });
     root.append(
@@ -357,6 +395,8 @@
           year: "",
           institution: "",
           detail: "",
+          certificateLabel: "Ver certificado",
+          certificateUrl: "",
         });
         draw();
       })
