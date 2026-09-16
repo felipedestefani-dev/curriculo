@@ -1,4 +1,5 @@
 (function () {
+  window.initCurriculumPage = function () {
   const header = document.getElementById("header");
   const navToggle = document.getElementById("nav-toggle");
   const navMenu = document.getElementById("nav-menu");
@@ -8,20 +9,6 @@
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
-
-  const externalContactLinks = {
-    linkedin: "https://www.linkedin.com/in/felipe-destefani-da-silva-273437377",
-    github: "https://github.com/felipedestefani-dev",
-  };
-
-  Object.entries(externalContactLinks).forEach(([id, url]) => {
-    const link = document.getElementById(id);
-    if (!link) return;
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.open(url, "_blank", "noopener,noreferrer");
-    });
-  });
 
   function closeNav() {
     navMenu.classList.remove("open");
@@ -125,7 +112,7 @@
         await html2pdf()
           .set({
             margin: [12, 12, 12, 12],
-            filename: "Felipe-Destefani-Curriculo.pdf",
+            filename: document.body.dataset.pdfName || "Felipe-Destefani-Curriculo.pdf",
             image: { type: "jpeg", quality: 0.95 },
             html2canvas: {
               scale: 2,
@@ -149,5 +136,10 @@
         downloadBtn.textContent = label;
       }
     });
+  }
+  };
+
+  if (!window.SITE_BOOTSTRAP) {
+    document.addEventListener("DOMContentLoaded", window.initCurriculumPage);
   }
 })();

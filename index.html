@@ -30,6 +30,7 @@
         <a href="#projetos" hidden>Projetos</a>
         <a href="#idiomas">Idiomas</a>
         <a href="#contato">Contato</a>
+        <a href="admin.html">Admin</a>
       </nav>
     </div>
   </header>
@@ -70,14 +71,14 @@
       <div class="container">
         <h2 class="section-title">Sobre</h2>
         <div class="section-line" aria-hidden="true"></div>
-        <div class="prose">
+        <div class="prose" id="sobre-prose">
           <p>
             Estudante focado em tecnologia, desenvolvimento web e soluções digitais. Atualmente cursando
             Comércio Exterior e iniciando meus estudos em backend, com interesse em crescimento profissional
             na área de tecnologia.
           </p>
         </div>
-        <ul class="tags-list" aria-label="Competências">
+        <ul class="tags-list" id="sobre-skills" aria-label="Competências">
           <li>Comunicação</li>
           <li>Organização</li>
           <li>Trabalho em equipe</li>
@@ -89,7 +90,7 @@
       <div class="container">
         <h2 class="section-title">Experiência profissional</h2>
         <div class="section-line" aria-hidden="true"></div>
-        <ol class="entries">
+        <ol class="entries" id="experiencia-list">
           <li class="entry">
             <div class="entry-header">
               <div>
@@ -108,7 +109,7 @@
       <div class="container">
         <h2 class="section-title">Formação acadêmica</h2>
         <div class="section-line" aria-hidden="true"></div>
-        <ol class="entries">
+        <ol class="entries" id="formacao-list">
           <li class="entry">
             <div class="entry-header">
               <div>
@@ -126,13 +127,13 @@
       <div class="container">
         <div class="section-title-row">
           <h2 class="section-title">Cursos e qualificações</h2>
-          <span class="section-title-extra">· Cursando</span>
+          <span class="section-title-extra" id="cursos-extra">· Cursando</span>
         </div>
         <div class="section-line" aria-hidden="true"></div>
-        <p class="section-intro">
+        <p class="section-intro" id="cursos-intro">
           Capacitações complementares, certificações e qualificações profissionais.
         </p>
-        <ol class="qualifications">
+        <ol class="qualifications" id="cursos-list">
           <li class="qualification">
             <span class="qualification-badge">Curso</span>
             <div class="qualification-header">
@@ -168,9 +169,9 @@
         <header class="projects-header">
           <h2 class="section-title">Projetos</h2>
           <div class="section-line" aria-hidden="true"></div>
-          <p class="projects-lead">Sites e aplicações web que desenvolvi.</p>
+          <p class="projects-lead" id="projetos-lead">Sites e aplicações web que desenvolvi.</p>
         </header>
-        <ul class="projects-grid">
+        <ul class="projects-grid" id="projetos-list">
           <li class="project-card">
             <div class="project-card-info">
               <div class="project-card-top">
@@ -220,7 +221,7 @@
       <div class="container">
         <h2 class="section-title">Idiomas</h2>
         <div class="section-line" aria-hidden="true"></div>
-        <ul class="languages">
+        <ul class="languages" id="idiomas-list">
           <li class="language-card">
             <div class="language-name">
               <span>Português</span>
@@ -233,19 +234,19 @@
           <li class="language-card">
             <div class="language-name">
               <span>Inglês</span>
-              <span class="language-level">C2</span>
+              <span class="language-level">Avançado · C2</span>
             </div>
             <div class="language-bar" role="presentation">
-              <span style="width: 92%"></span>
+              <span style="width: 88%"></span>
             </div>
           </li>
           <li class="language-card">
             <div class="language-name">
               <span>Espanhol</span>
-              <span class="language-level">A1</span>
+              <span class="language-level">Básico · A1</span>
             </div>
             <div class="language-bar" role="presentation">
-              <span style="width: 15%"></span>
+              <span style="width: 12%"></span>
             </div>
           </li>
           <li class="language-card">
@@ -254,7 +255,7 @@
               <span class="language-level">Aprendendo</span>
             </div>
             <div class="language-bar" role="presentation">
-              <span style="width: 15%"></span>
+              <span style="width: 8%"></span>
             </div>
           </li>
         </ul>
@@ -265,11 +266,11 @@
       <div class="container">
         <h2 class="section-title">Contato</h2>
         <div class="section-line" aria-hidden="true"></div>
-        <p class="contact-intro">
+        <p class="contact-intro" id="contato-intro">
           Estou aberto(a) a conversas sobre oportunidades profissionais, parcerias ou networking.
           Escolha o canal de sua preferência:
         </p>
-        <ul class="contact-grid">
+        <ul class="contact-grid" id="contato-list">
           <li>
             <a href="mailto:felipedestefanidasilva@gmail.com" class="contact-card">
               <span class="contact-label">E-mail</span>
@@ -283,13 +284,13 @@
             </a>
           </li>
           <li>
-            <a href="#linkedin" class="contact-card" id="linkedin" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/felipe-destefani-da-silva-273437377" class="contact-card" target="_blank" rel="noopener noreferrer">
               <span class="contact-label">LinkedIn</span>
               <span class="contact-value">Ver perfil</span>
             </a>
           </li>
           <li>
-            <a href="#github" class="contact-card" id="github" rel="noopener noreferrer">
+            <a href="https://github.com/felipedestefani-dev" class="contact-card" target="_blank" rel="noopener noreferrer">
               <span class="contact-label">GitHub</span>
               <span class="contact-value">@felipedestefani-dev</span>
             </a>
@@ -313,12 +314,20 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> Felipe Destefani da Silva. Todos os direitos reservados.</p>
+      <p>&copy; <span id="year"></span> <span id="footer-name">Felipe Destefani da Silva</span>. Todos os direitos reservados.</p>
       <a href="#inicio" class="back-top">Voltar ao topo</a>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/defaults.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/site.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => window.startSite());
+  </script>
 </body>
 </html>
