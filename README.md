@@ -23,7 +23,7 @@ python3 -m http.server 8080
 
 ## Editar o currículo (Admin + Supabase)
 
-Abra `admin.html` (ou a aba **Admin** no menu). Sem o Supabase configurado, o site continua com o conteúdo do `index.html`.
+Abra `/admin` (por exemplo `http://localhost:8080/admin`). Não há botão no currículo. Sem o Supabase configurado, o site continua com o conteúdo do `index.html`.
 
 1. Crie um projeto em [supabase.com](https://supabase.com).
 2. No **SQL Editor**, cole e execute o arquivo `supabase/schema.sql`.

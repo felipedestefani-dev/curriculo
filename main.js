@@ -87,6 +87,123 @@
     showProjetos();
   }
 
+  const certModal = document.getElementById("cert-modal");
+  const certTitle = document.getElementById("cert-modal-title");
+  const certImage = document.getElementById("cert-image");
+  const certFrame = document.getElementById("cert-frame");
+  const certStage = document.getElementById("cert-stage");
+  const certZoom = document.getElementById("cert-zoom");
+  const certZoomLabel = document.getElementById("cert-zoom-label");
+  const certHint = document.getElementById("cert-hint");
+  let certScale = 1;
+  let certX = 0;
+  let certY = 0;
+  let certDrag = null;
+
+  function isPdf(url) {
+    return /\.pdf($|\?|#)/i.test(url);
+  }
+
+  function applyCertTransform() {
+    const transform = "translate(" + certX + "px, " + certY + "px) scale(" + certScale + ")";
+    certImage.style.transform = transform;
+    certFrame.style.transform = transform;
+    if (certZoomLabel) certZoomLabel.textContent = Math.round(certScale * 100) + "%";
+  }
+
+  function setCertZoom(next) {
+    certScale = Math.min(4, Math.max(1, next));
+    if (certScale === 1) {
+      certX = 0;
+      certY = 0;
+    }
+    applyCertTransform();
+  }
+
+  function closeCert() {
+    if (!certModal || certModal.hidden) return;
+    certModal.hidden = true;
+    document.body.classList.remove("cert-open");
+    certImage.removeAttribute("src");
+    certFrame.removeAttribute("src");
+    certImage.hidden = true;
+    certFrame.hidden = true;
+  }
+
+  function openCert(url, title) {
+    if (!certModal) return;
+    certTitle.textContent = title || "Certificado";
+    certScale = 1;
+    certX = 0;
+    certY = 0;
+    const pdf = isPdf(url);
+    certImage.hidden = pdf;
+    certFrame.hidden = !pdf;
+    certZoom.hidden = pdf;
+    certHint.textContent = pdf
+      ? "Certificado em PDF."
+      : "Use os botões ou a roda do mouse para ampliar. Arraste para mover.";
+    if (pdf) certFrame.src = url;
+    else certImage.src = url;
+    certImage.alt = title || "Certificado";
+    applyCertTransform();
+    certModal.hidden = false;
+    document.body.classList.add("cert-open");
+  }
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest(".qualification-cert");
+    if (link) {
+      event.preventDefault();
+      openCert(link.getAttribute("href"), link.dataset.title);
+      return;
+    }
+    if (event.target.closest("[data-cert-close]")) closeCert();
+  });
+
+  certZoom?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-zoom]");
+    if (!button) return;
+    setCertZoom(certScale + (button.dataset.zoom === "in" ? 0.25 : -0.25));
+  });
+
+  certStage?.addEventListener(
+    "wheel",
+    (event) => {
+      if (certModal.hidden || certImage.hidden) return;
+      event.preventDefault();
+      setCertZoom(certScale + (event.deltaY < 0 ? 0.15 : -0.15));
+    },
+    { passive: false }
+  );
+
+  certStage?.addEventListener("pointerdown", (event) => {
+    if (certModal.hidden || certScale <= 1 || event.button !== 0) return;
+    certDrag = { id: event.pointerId, x: event.clientX, y: event.clientY, originX: certX, originY: certY };
+    certStage.classList.add("is-dragging");
+    certStage.setPointerCapture(event.pointerId);
+  });
+
+  certStage?.addEventListener("pointermove", (event) => {
+    if (!certDrag || certDrag.id !== event.pointerId) return;
+    certX = certDrag.originX + event.clientX - certDrag.x;
+    certY = certDrag.originY + event.clientY - certDrag.y;
+    applyCertTransform();
+  });
+
+  function endCertDrag(event) {
+    if (!certDrag || certDrag.id !== event.pointerId) return;
+    certDrag = null;
+    certStage.classList.remove("is-dragging");
+  }
+
+  certStage?.addEventListener("pointerup", endCertDrag);
+  certStage?.addEventListener("pointercancel", endCertDrag);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeCert();
+  });
+
   const downloadBtn = document.getElementById("download-pdf");
   const main = document.getElementById("main");
 

@@ -82,7 +82,7 @@
   function addButton(label, onClick) {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "btn btn-outline";
+    button.className = "admin-btn admin-btn-secondary";
     button.textContent = label;
     button.addEventListener("click", onClick);
     return button;
@@ -578,22 +578,12 @@
     message.className = status.kind === "ok" ? "status-ok" : status.kind === "error" ? "status-error" : "";
     const actions = document.createElement("div");
     actions.className = "inline-actions";
-    const restore = document.createElement("button");
-    restore.type = "button";
-    restore.className = "btn btn-outline";
-    restore.textContent = "Restaurar versão do arquivo";
-    restore.addEventListener("click", () => {
-      if (!confirm("Isso substitui o que está aberto no admin pelos textos atuais do arquivo. Só publica quando você salvar.")) return;
-      resume = clone(window.DEFAULT_RESUME);
-      setStatus("Versão do arquivo carregada. Clique em Salvar para publicar.", "");
-      draw();
-    });
     const save = document.createElement("button");
     save.type = "button";
-    save.className = "btn btn-primary";
-    save.textContent = "Salvar no Supabase";
+    save.className = "admin-btn";
+    save.textContent = "Salvar";
     save.addEventListener("click", saveResume);
-    actions.append(restore, save);
+    actions.append(save);
     bar.append(message, actions);
 
     main.append(nav, panel, bar);
@@ -619,7 +609,7 @@
       setStatus("Não salvou. Rode o arquivo supabase/schema.sql no SQL Editor. " + error.message, "error");
       return;
     }
-    setStatus("Salvo. Atualize o site para ver as mudanças.", "ok");
+    setStatus("Salvo.", "ok");
   }
 
   function showSetup() {
@@ -645,8 +635,8 @@
     });
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "btn btn-primary";
-    button.textContent = "Salvar conexão";
+    button.className = "admin-btn";
+    button.textContent = "Continuar";
     button.addEventListener("click", () => {
       const urlInput = url.querySelector("input").value.trim();
       const keyInput = key.querySelector("input").value.trim();
@@ -670,22 +660,22 @@
     heading.textContent = "Entrar";
     const lead = document.createElement("p");
     lead.className = "panel-lead";
-    lead.textContent = "Use a conta " + window.SITE_CONFIG.adminEmail + " criada no Supabase.";
+    lead.textContent = window.SITE_CONFIG.adminEmail;
     const email = field("E-mail", window.SITE_CONFIG.adminEmail, () => {}, { type: "email" });
     const password = field("Senha", "", () => {}, { type: "password" });
     const message = document.createElement("p");
     message.id = "login-status";
     const enter = document.createElement("button");
     enter.type = "button";
-    enter.className = "btn btn-primary";
+    enter.className = "admin-btn";
     enter.textContent = "Entrar";
     const create = document.createElement("button");
     create.type = "button";
-    create.className = "btn btn-outline";
+    create.className = "text-btn";
     create.textContent = "Criar conta";
     const change = document.createElement("button");
     change.type = "button";
-    change.className = "link-btn";
+    change.className = "text-btn";
     change.textContent = "Trocar conexão";
     change.addEventListener("click", () => {
       window.saveSupabaseConfig("", "");

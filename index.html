@@ -30,7 +30,6 @@
         <a href="#projetos" hidden>Projetos</a>
         <a href="#idiomas">Idiomas</a>
         <a href="#contato">Contato</a>
-        <a href="admin.html">Admin</a>
       </nav>
     </div>
   </header>
@@ -311,6 +310,26 @@
       </div>
     </section>
   </main>
+
+  <div class="cert-modal" id="cert-modal" hidden>
+    <div class="cert-modal-backdrop" data-cert-close></div>
+    <div class="cert-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+      <header class="cert-modal-bar">
+        <h2 id="cert-modal-title">Certificado</h2>
+        <div class="cert-zoom" id="cert-zoom">
+          <button type="button" data-zoom="out" aria-label="Diminuir zoom">−</button>
+          <span id="cert-zoom-label">100%</span>
+          <button type="button" data-zoom="in" aria-label="Aumentar zoom">+</button>
+        </div>
+        <button type="button" class="cert-close" data-cert-close aria-label="Fechar">Fechar</button>
+      </header>
+      <div class="cert-stage" id="cert-stage">
+        <img id="cert-image" alt="" draggable="false" hidden />
+        <iframe id="cert-frame" title="Certificado" hidden></iframe>
+      </div>
+      <p class="cert-hint" id="cert-hint">Use os botões ou a roda do mouse para ampliar. Arraste para mover.</p>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container footer-inner">

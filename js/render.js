@@ -198,9 +198,9 @@
                 certHref && certHref !== "#"
                   ? '<a class="qualification-cert" href="' +
                     esc(certHref) +
-                    '"' +
-                    externalAttrs(certHref) +
-                    ">" +
+                    '" data-title="' +
+                    esc(item.title || "Certificado") +
+                    '">' +
                     esc(item.certificateLabel || "Ver certificado") +
                     "</a>"
                   : "";
